@@ -1,0 +1,34 @@
+<?php
+// Script sencillo para enviar mensajes a Telegram
+// 🔧 Configura tu token y chat ID
+$token = "8223280112:AAFJXroUyuA4lAoATNqUb4TEsCw8EnID04U";
+$chat_id = "8068672772";
+
+$mensaje = $argv[1] ?? "Mensaje de prueba desde servidor";
+
+$url = "https://api.telegram.org/bot{$token}/sendMessage";
+
+$data = [
+    "chat_id" => $chat_id,
+    "text" => $mensaje,
+    "parse_mode" => "HTML"
+];
+
+$options = [
+    "http" => [
+        "header"  => "Content-type: application/x-www-form-urlencoded\r\n",
+        "method"  => "POST",
+        "content" => http_build_query($data),
+    ],
+];
+
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+
+if ($result === FALSE) {
+    fwrite(STDERR, "❌ Error al enviar mensaje\n");
+    exit(1);
+}
+
+echo "✅ Mensaje enviado: $mensaje\n";
+?>

@@ -1,0 +1,14 @@
+datos/ordenes.sqlite
+datos/respaldos/
+*.backup
+*.bak*
+*.tar.gz
+*.sqlite
+logs/*
+!logs/.htaccess
+enviar_telegram.php
+config.php
+subidas/*
+!subidas/.htaccess
+*.swp
+.DS_Store
