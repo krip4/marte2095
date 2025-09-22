@@ -1,0 +1,13 @@
+[Unit]
+Description=Monitor de nuevas órdenes para Marte2095
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/var/www/marte2095
+ExecStart=/bin/bash /var/www/marte2095/monitor_ordenes.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
